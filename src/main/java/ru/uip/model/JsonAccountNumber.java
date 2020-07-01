@@ -1,38 +1,22 @@
 package ru.uip.model;
 
-import javax.validation.constraints.NotBlank;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 public class JsonAccountNumber {
 
+    @NotBlank
     private String accountNumber;
 
-    @NotBlank
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(String accountNumber) {
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public JsonAccountNumber(@JsonProperty("accountNumber") String accountNumber) {
         this.accountNumber = accountNumber;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        JsonAccountNumber that = (JsonAccountNumber) o;
-        return accountNumber.equals(that.accountNumber);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(accountNumber);
-    }
-
-    @Override
-    public String toString() {
-        return "JsonAccountNumber{" +
-                "accountNumber='" + accountNumber + '\'' +
-                '}';
     }
 }
