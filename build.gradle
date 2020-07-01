@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.uip'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'javax.validation:validation-api:2.0.0.Final'
+}
