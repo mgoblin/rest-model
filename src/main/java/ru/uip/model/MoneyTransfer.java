@@ -24,14 +24,14 @@ final public class MoneyTransfer {
 
     @DecimalMax("10000.0") @DecimalMin("0.0")
     @NotNull
-    private final double ammount;
+    private final double amount;
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public MoneyTransfer(@JsonProperty("fromAccountNumber") String fromAccountNumber,
                          @JsonProperty("toAccountNumber") String toAccountNumber,
-                         @JsonProperty("ammount") double ammount) {
+                         @JsonProperty("amount") double amount) {
         this.fromAccountNumber = fromAccountNumber;
         this.toAccountNumber = toAccountNumber;
-        this.ammount = ammount;
+        this.amount = amount;
     }
 }
