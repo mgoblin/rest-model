@@ -15,7 +15,6 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "jsonAccount")
 @XmlType(propOrder = {"accountNumber", "accountName", "accountBalance", "accountStatus"})
 @XmlAccessorType(XmlAccessType.FIELD)
-
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -38,6 +37,10 @@ public class JsonAccount {
     @XmlElement
     @NotNull
     private EnumAccountStatus accountStatus;
+
+    public JsonAccount() {
+
+    }
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public JsonAccount(
