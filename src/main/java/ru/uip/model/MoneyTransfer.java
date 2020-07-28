@@ -12,19 +12,33 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "moneyTransfer")
+@XmlType(propOrder = {"fromAccountNumber", "toAccountNumber", "amount"})
+@XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 @EqualsAndHashCode
 @ToString
 final public class MoneyTransfer {
+    @XmlElement
     @NotBlank
     private final String fromAccountNumber;
 
+    @XmlElement
     @NotBlank
     private final String toAccountNumber;
 
+    @XmlElement
     @DecimalMax("10000.0") @DecimalMin("0.0")
     @NotNull
     private final double amount;
+
+    public MoneyTransfer() {
+        this.fromAccountNumber="";
+        this.toAccountNumber="";
+        amount=0;
+    }
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public MoneyTransfer(@JsonProperty("fromAccountNumber") String fromAccountNumber,

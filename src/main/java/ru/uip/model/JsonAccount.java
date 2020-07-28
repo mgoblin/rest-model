@@ -8,26 +8,38 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Objects;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "jsonAccount")
+@XmlType(propOrder = {"accountNumber", "accountName", "accountBalance", "accountStatus"})
+@XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
 public class JsonAccount {
 
+    @XmlElement
     @NotBlank
     private String accountNumber;
 
+    @XmlElement
     @NotBlank
     private String accountName;
 
+    @XmlElement
     @DecimalMax("10000.0") @DecimalMin("0.0")
     @NotNull
     private double accountBalance;
 
+    @XmlElement
     @NotNull
     private EnumAccountStatus accountStatus;
+
+    public JsonAccount() {
+
+    }
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public JsonAccount(

@@ -9,15 +9,27 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "moneyTransferResult")
+@XmlType(propOrder = {"from", "to"})
+@XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 @EqualsAndHashCode
 @ToString
 final public class MoneyTransferResult {
+    @XmlElement
     @NotNull
     private final JsonAccount from;
 
+    @XmlElement
     @NotNull
     private final JsonAccount to;
+
+    public MoneyTransferResult() {
+        this.from = new JsonAccount();
+        this.to = new JsonAccount();
+    }
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public MoneyTransferResult(
